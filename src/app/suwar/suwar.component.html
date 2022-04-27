@@ -1,0 +1,17 @@
+<div class="container">
+      <div *ngIf="suwar" class="row  row-cols-2 row-cols-md-3 row-cols-lg-4 justify-content-center gap-2">
+            <div *ngFor="let surah of suwar">
+                  <div class="container custom-color-bg-gold custom-color-text-gold custom-gold-border row row-cols-auto position-relative">
+                       <div class="badge custom-color-text-gold position-absolute top-50 end-0 translate-middle-y m-1">
+                              {{surah.id}}
+                       </div>
+
+                       <div class="row text-nowrap m-1">
+                            <h3> {{surah.arabicName}}</h3>
+                            <h3> {{surah.englishName}}</h3>
+                       </div>
+                  <a class="stretched-link" [routerLink]="['/surah', surah.id]"></a>
+                  </div>
+            </div>
+      </div>
+</div>

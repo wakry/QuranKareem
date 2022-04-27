@@ -1,0 +1,46 @@
+<!-- Toggle Buttons for view  -->
+<mat-button-toggle-group class="sticky_toggle_group" #group="matButtonToggleGroup" [value]="currentView" name="surahViewToggleGroup" aria-label="Surah View"  (change)="changeView($event.value)">
+    <mat-button-toggle class="toggle_button" value="1">ALL</mat-button-toggle>
+    <mat-button-toggle class="toggle_button" value="2">AYAH</mat-button-toggle>
+    <mat-button-toggle class="toggle_button" value="3">Page</mat-button-toggle>
+</mat-button-toggle-group>
+  <!-- Audio Player -->
+<div>
+    <app-audio-player #audioElement src="assets\001.ogg"></app-audio-player>
+</div>
+
+<ng-container *ngIf="surah && currentView==1">
+    <div class="surah_view_div">
+        <span *ngFor="let ayah of surah.ayat">
+            <span class="ayah" (click)="play(i)" *ngFor="let word of ayah.words; index as i">
+                {{word}}
+            </span>
+        </span>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="surah && currentView==2">
+    <div class="surah_view_div">
+        <span (click)="play(i)" class="ayah" *ngFor="let word of surah.ayat[nextPointer].words; index as i; trackBy:trackword">
+        {{word}}
+        </span>
+    </div>
+    <div>
+        <button [disabled]="!(surah.ayat.length-1 > nextPointer)" (click)="goNext()">NEXT AYAH</button>
+        <button [disabled]="!(previousPointer> -1)" (click)="goPrevious()">PREVIOUS AYAH</button>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="surah && currentView==3">
+    <div class="surah_view_div">
+        <span (click)="play(i)" class="ayah" *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
+            <span class="ayah" (click)="play(i)" *ngFor="let word of ayah.words; index as i">
+                {{word}}
+            </span>
+        </span>
+    </div>
+    <div>
+        <button [disabled]="!(surah.ayat.length-1 > nextPointer)" (click)="goNextPage()">NEXT PAGE</button>
+        <button [disabled]="!(previousPointer> -1)" (click)="goPreviousPage()">PREVIOUS PAGE</button>
+    </div>
+</ng-container>

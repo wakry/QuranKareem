@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+.custom-color-bg-gold{
+    background-color: black;
+}
+
+.custom-color-text-gold{
+    color: goldenrod;
+}
+
+.custom-gold-border{
+    border-radius: 15px;
+    border: 2px solid goldenrod
+}
+
+.surah_view_div{
+    height: auto;
+}
+
+@font-face{
+    font-family: UthmanicHafs;
+    font-style: normal;
+    font-weight: 400;
+    src: url('src/assets/fonts/UthmanicHafs1 Ver18.ttf') format('truetype')
+}
+
+html, body { height: auto; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
