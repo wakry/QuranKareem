@@ -1,6 +1,10 @@
 .ayah {
     font-family: UthmanicHafs;
     margin-right: .1%;
+    font-weight: 800;
+    font-size: x-large;
+    line-height: 250%;
+    text-align: center;
    }
 
 .sticky_toggle_group{
@@ -14,3 +18,41 @@
 .toggle_button{
     width: 100%;
 }
+
+.button{
+    font-size: large;
+    width: 50%;
+    height: 50px;
+}
+
+.surah_view_div{
+    height: max-content;
+}
+
+.surah_card{
+    min-height: 500px;
+}
+
+.surah_container{
+    width: 50%;
+}
+
+.footer_div{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.mat-card.scrollable-content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-card.scrollable-content > .mat-card-title-group {
+    display: block;
+  }
+  
+  .mat-card.scrollable-content > .mat-card-content {
+    overflow-y: auto;
+  }

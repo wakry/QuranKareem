@@ -12,14 +12,9 @@
     border: 2px solid goldenrod
 }
 
-.surah_view_div{
-    height: auto;
-}
-
 @font-face{
     font-family: UthmanicHafs;
     font-style: normal;
-    font-weight: 400;
     src: url('src/assets/fonts/UthmanicHafs1 Ver18.ttf') format('truetype')
 }
 

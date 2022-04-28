@@ -1,8 +1,9 @@
-.ayah {
- font-family: UthmanicHafs;
- margin-right: .1%;
-}
-
 .border{
     height:auto;
+}
+
+.surah_view_div{
+    margin-right: 10%;
+    margin-left: 10%;
+    border-color: brown;
 }
