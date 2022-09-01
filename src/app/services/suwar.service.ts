@@ -15,7 +15,7 @@ export interface Surah {
 
 @Injectable()
 export class SuwarService {
-  suwarUrl = "https://localhost:44301/surah"
+  suwarUrl = "http://localhost:4300/surah"
   constructor(private http: HttpClient) { }
 
   getSuwar() {

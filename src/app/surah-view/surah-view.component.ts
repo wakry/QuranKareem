@@ -1,5 +1,8 @@
+import { NumberSymbol } from '@angular/common';
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ExplanationDialogComponent } from '../explanation-dialog/explanation-dialog.component';
 import { Surah, SuwarService } from '../services/suwar.service';
 
 @Component({
@@ -15,7 +18,11 @@ export class SurahViewComponent implements OnInit {
   //   this.pageYoffset = window.pageYOffset;
   // }
 
-  constructor(private route: ActivatedRoute, private suwarService: SuwarService, private elRef: ElementRef) { }
+  constructor(private route: ActivatedRoute,
+    private suwarService: SuwarService,
+    private elRef: ElementRef,
+    public dialog: MatDialog) { }
+    
   @ViewChild('audioElement') audio: any;
   id: any;
   @Input() surah: Surah | undefined;
@@ -61,7 +68,13 @@ export class SurahViewComponent implements OnInit {
   public play(i: number) {
 
     this.audio.playAt(this.surah?.times[i]);
+    
+  }
 
+  public openTfsser(j:number){
+
+    this.openDialog(j);
+    
   }
 
   public getSurahText() {
@@ -142,6 +155,16 @@ export class SurahViewComponent implements OnInit {
 
   scrollToTop() {
     this.elRef.nativeElement.scrollIntoView();
+  }
+
+  
+  openDialog(id:number) {
+    console.log(this.surah?.ayat[id]);
+    const dialogRef = this.dialog.open(ExplanationDialogComponent,{data:this.surah?.ayat[id]});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

@@ -1,0 +1,15 @@
+<ng-container *ngIf="ayat">
+    <button mat-mini-fab mat-dialog-close color="white"> 
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-dialog-content class="mat-typography dialog">
+        <mat-tab-group *ngFor="let tfseer of ayat.explanations">
+            <mat-tab [label]="tfseer.source.arabicName">
+                {{tfseer.explanationText}}
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>إغلاق</button>
+    </mat-dialog-actions>
+</ng-container>

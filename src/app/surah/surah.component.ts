@@ -14,7 +14,7 @@ export class SurahComponent implements OnInit {
   constructor(private route: ActivatedRoute, private suwarService: SuwarService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {
       this.id = params.get('id');
     });
     this.getSurah(this.id);

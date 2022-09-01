@@ -18,34 +18,30 @@
         </mat-card-header>
         <mat-card-content>
             <ng-container *ngIf="currentView==1">
-                <div>
-                    <span *ngFor="let ayah of surah.ayat">
-                        <span class="ayah" (click)="play(i)" *ngFor="let word of ayah.words; index as i">
-                            {{word}}
-                        </span>
-                    </span>
-                </div>
+                    <ng-container *ngFor="let ayah of surah.ayat; index as j">
+                        <ng-container  class="ayah" *ngFor="let word of ayah.words;let last = last; index as i">
+                            <span *ngIf="!last" class="ayah" (click)="play(i)"> {{word}}</span>
+                            <span *ngIf="last" class="ayah" (click)="openTfsser(j)"> {{word}}</span>
+                        </ng-container>
+                    </ng-container>
             </ng-container>
 
             <ng-container *ngIf="currentView==2">
-                <div>
-                    <span class="ayah" (click)="play(i)"
-                        *ngFor="let word of surah.ayat[nextPointer].words; index as i; trackBy:trackword">
-                        {{word}}
-                    </span>
-                </div>
+                <ng-container class="ayah" *ngFor="let word of surah.ayat[nextPointer].words;let last = last; index as i; trackBy:trackword">
+                    <span *ngIf="!last" class="ayah" (click)="play(i)"> {{word}}</span>
+                    <span *ngIf="last" class="ayah" (click)="openTfsser(nextPointer)"> {{word}}</span>
+                </ng-container>
             </ng-container>
 
             <ng-container *ngIf="currentView==3">
-                <div>
                     <span (click)="play(i)"
                         *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
                         <span class="ayah" (click)="play(i)" *ngFor="let word of ayah.words; index as i">
                             {{word}}
                         </span>
                     </span>
-                </div>
             </ng-container>
+
         </mat-card-content>
     </mat-card>
 

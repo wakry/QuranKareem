@@ -10,6 +10,7 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import { SurahViewComponent } from './surah-view/surah-view.component';
+import { ExplanationDialogComponent } from './explanation-dialog/explanation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SurahViewComponent } from './surah-view/surah-view.component';
     NavBarComponent,
     SurahComponent,
     AudioPlayerComponent,
-    SurahViewComponent
+    SurahViewComponent,
+    ExplanationDialogComponent
   ],
   imports: [
     BrowserModule,
