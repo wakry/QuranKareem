@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -7,7 +7,7 @@ export interface Surah {
   id: number;
   arabicName: string;
   englishName: string;
-  numberOfPages : number;
+  numberOfPages: number;
   ayat: any;
   words: any;
   times: any;
@@ -18,8 +18,9 @@ export class SuwarService {
   suwarUrl = "http://localhost:4300/surah"
   constructor(private http: HttpClient) { }
 
-  getSuwar() {
-    return this.http.get<Surah[]>(this.suwarUrl, { observe: 'response' })
+
+  getSuwar(): Observable<Surah[]> {
+    return this.http.get<Surah[]>(this.suwarUrl).pipe(catchError(this.handleError<Surah[]>('getSuwar')));
   }
 
   getSurah(id: number): Observable<Surah> {
@@ -44,6 +45,12 @@ export class SuwarService {
  */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+
+      if (error instanceof HttpErrorResponse) {
+        console.log("Server Error!");
+      } else {
+        console.log("Client Side Error!");
+      }
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead

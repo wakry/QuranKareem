@@ -9,7 +9,7 @@ import {Surah,SuwarService } from '../services/suwar.service';
 })
 export class SuwarComponent implements OnInit {
   headers: string[] = [];
-  suwar: Surah[] =[];
+  suwar: Surah[]| undefined;
   constructor(private suwarService: SuwarService) { }
 
   ngOnInit(): void {
@@ -17,9 +17,7 @@ export class SuwarComponent implements OnInit {
   }
 
   showSuwar() {
-    this.suwarService.getSuwar()
-      .subscribe(
-        resp => {this.suwar = resp.body!}
-      );
+    this.suwarService.getSuwar().subscribe(suwar => this.suwar = suwar);
   }
+  
 }

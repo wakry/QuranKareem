@@ -19,10 +19,10 @@ export class SurahComponent implements OnInit {
     });
     this.getSurah(this.id);
   }
-  
-    private getSurah(id: number) {
+
+  private getSurah(id: number) {
     id = parseInt(this.id);
-    this.suwarService.getSurah(id).subscribe(surah => this.surah = surah);
+    this.suwarService.getSurah(id).subscribe(suwar => this.surah = suwar);
   }
-  
+
 }
