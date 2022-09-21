@@ -1,6 +1,13 @@
 <ng-container *ngIf="suwar; else templateA">
-      <mat-spinner aria-label="area"></mat-spinner>
+      worked!
+
 </ng-container>
 <ng-template #templateA>
 
 </ng-template>
+
+<mat-progress-spinner
+[color]="color"
+[mode]="mode"
+[value]="value">
+</mat-progress-spinner>

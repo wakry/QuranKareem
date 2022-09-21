@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import {Surah,SuwarService } from '../services/suwar.service';
 
 @Component({
@@ -8,6 +10,11 @@ import {Surah,SuwarService } from '../services/suwar.service';
   styleUrls: ['./suwar.component.css']
 })
 export class SuwarComponent implements OnInit {
+
+  color: ThemePalette = 'accent';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
+  
   headers: string[] = [];
   suwar: Surah[]| undefined;
   error: any|undefined ='';

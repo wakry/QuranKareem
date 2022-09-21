@@ -45,6 +45,7 @@ $dark-theme: mat.define-dark-theme((
 @include mat.button-toggle-theme($dark-theme);
 @include mat.dialog-theme($dark-theme);
 @include mat.tabs-theme($dark-theme);
+@include mat.progress-spinner-theme($dark-theme);
 @include errors-block-theme($dark-theme);
 
 // Apply the light theme only when the `.my-light-theme` CSS class is applied
