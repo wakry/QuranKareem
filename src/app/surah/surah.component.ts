@@ -22,7 +22,7 @@ export class SurahComponent implements OnInit {
 
   private getSurah(id: number) {
     id = parseInt(this.id);
-    this.suwarService.getSurah(id).subscribe(suwar => this.surah = suwar);
+    this.suwarService.getSurah(id).subscribe(surah => this.surah = surah);
   }
 
 }

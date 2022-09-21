@@ -20,21 +20,17 @@ export class SuwarService {
 
 
   getSuwar(): Observable<Surah[]> {
-    return this.http.get<Surah[]>(this.suwarUrl).pipe(catchError(this.handleError<Surah[]>('getSuwar')));
+    return this.http.get<Surah[]>(this.suwarUrl);//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
   }
 
   getSurah(id: number): Observable<Surah> {
     const url = `${this.suwarUrl}/${id}`;
-    return this.http.get<Surah>(url).pipe(
-      tap(_ => this.log(`fetched surah id=${id}`)),
-      catchError(this.handleError<Surah>(`getSurah id=${id}`)));
+    return this.http.get<Surah>(url);
   }
 
   getSurahWordByWord(id: number): Observable<Surah> {
     const url = `${this.suwarUrl}/${id}`;
-    return this.http.get<Surah>(url).pipe(
-      tap(_ => this.log(`fetched surah id=${id}`)),
-      catchError(this.handleError<Surah>(`getSurah id=${id}`)));
+    return this.http.get<Surah>(url);
   }
 
   /**
@@ -43,30 +39,31 @@ export class SuwarService {
  * @param operation - name of the operation that failed
  * @param result - optional value to return as the observable result
  */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  // private handleError<T>(operation = 'operation', result?: T) {
+  //   return (error: any): Observable<T> => {
 
-      if (error instanceof HttpErrorResponse) {
-        console.log("Server Error!");
-      } else {
-        console.log("Client Side Error!");
-      }
+  //     if (error instanceof HttpErrorResponse) {
+  //       console.log("Server Error!");
+  //     } else {
+  //       console.log("Client Side Error!");
+  //     }
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+  //     // TODO: send the error to remote logging infrastructure
+  //     console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+  //     // TODO: better job of transforming error for user consumption
+  //     this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  //     // Let the app keep running by returning an empty result.
+  //     //return of(result as T);
+  //     return throwError(new Error("Something wrong happened!"));
+  //   };
 
-  }
+  // }
   /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    console.log(message);
-  }
+  // private log(message: string) {
+  //   console.log(message);
+  // }
 
 }
 

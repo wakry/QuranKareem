@@ -1,10 +1,13 @@
-  <nav class="navbar navbar-dark bg-dark my-2">
-   <div class="container-fluid ">
-      <div class="d-flex flex-row bd-highlight table.fit">
-          <div class="p-2 bd-highlight"><a [routerLink]="['/']" class="nav-link">الرئيسية</a></div>
-          <div class="p-2 bd-highlight nav-link" ><a class="nav-link link-light" [routerLink]="['/suwar']">المصحف</a></div>
-          <div class="p-2 bd-highlight"><a class="nav-link">عني</a></div>
-        </div>
-   </div>
-  </nav>
-
+<mat-toolbar>
+  <button mat-icon-button aria-label="Example icon-button with menu icon">
+   <mat-icon>menu</mat-icon>
+ </button>
+ <app-nav-bar-button title="المصحف" logoName="quran-icon" (click)="btnClick()"></app-nav-bar-button>
+ <span class="navbar-spacer"></span>
+ <button mat-icon-button class="favorite-icon" aria-label="Example icon-button with heart icon">
+   <mat-icon>favorite</mat-icon>
+ </button>
+ <button mat-icon-button aria-label="Example icon-button with share icon">
+  <mat-icon>share</mat-icon>
+</button>
+</mat-toolbar>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ErrorsService } from './services/errors.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  showErrorsBlock = false;
+  constructor(public errorsService:ErrorsService){}
+
+  ngOnInit() {
+  }
+
   title = 'QuranKareem';
-}
+  }
+
+
