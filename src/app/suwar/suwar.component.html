@@ -1,13 +1,26 @@
-<ng-container *ngIf="suwar; else templateA">
-      worked!
+<ng-container *ngIf="isLoading then loading"></ng-container>
 
-</ng-container>
-<ng-template #templateA>
+<ng-container *ngIf="suwar then displayResult"></ng-container>
+<ng-container *ngIf="isError then displayError"></ng-container>
 
+<!-- Loading template -->
+<ng-template #loading>
+      <div id="pluswrap">
+            <div class="plus">
+                  <mat-spinner class="center" color="accent"></mat-spinner>
+            </div>
+      </div>
 </ng-template>
 
-<mat-progress-spinner
-[color]="color"
-[mode]="mode"
-[value]="value">
-</mat-progress-spinner>
+<!-- In case of results -->
+<ng-template #displayResult>
+      <div *ngIf="suwar">
+            <app-surah-list-element></app-surah-list-element>
+      </div>
+</ng-template>
+
+<!-- In case of error -->
+<ng-template #displayError>
+      <app-errors-block message="حدث خطأ أثناء إسترجاع البيانات من الخادم"></app-errors-block>
+</ng-template>
+

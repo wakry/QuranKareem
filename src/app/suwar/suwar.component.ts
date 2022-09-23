@@ -1,33 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import {Surah,SuwarService } from '../services/suwar.service';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Surah, SuwarService } from '../services/suwar.service';
+import { tap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-suwar',
   templateUrl: './suwar.component.html',
-  providers: [ SuwarService ],
+  providers: [SuwarService],
   styleUrls: ['./suwar.component.css']
 })
-export class SuwarComponent implements OnInit {
+export class SuwarComponent implements OnInit, OnDestroy {
 
-  color: ThemePalette = 'accent';
-  mode: ProgressSpinnerMode = 'indeterminate';
-  value = 50;
-  
-  headers: string[] = [];
-  suwar: Surah[]| undefined;
-  error: any|undefined ='';
-  show = true;
-  constructor(private suwarService: SuwarService) { }
+  suwar: Surah[] | undefined;
+  error: any | undefined = '';
+  isLoading = true;
+  isError = false;
+  asyncResult: any;
+
+  constructor(public suwarService: SuwarService) { }
 
   ngOnInit(): void {
     this.showSuwar();
   }
 
   showSuwar() {
-    //this.suwarService.getSuwar().subscribe(suwar => this.suwar = suwar, error => this.error = error);
-    this.suwarService.getSuwar().subscribe(success =>{this.suwar = success },error =>{throw(error);});
-  }  
-  
+    this.suwarService.getSuwar().pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    ).subscribe(
+      success => { this.suwar = success},
+      error => { this.isError = true; throw error; });
+  }
+
+  ngOnDestroy(): void {
+    console.log("SuwarComponent destroyed.");
+  }
+
 }

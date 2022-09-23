@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 export interface Surah {
   id: number;
@@ -20,8 +20,9 @@ export class SuwarService {
 
 
   getSuwar(): Observable<Surah[]> {
-    return this.http.get<Surah[]>(this.suwarUrl);//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
+    return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(2000));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
   }
+
 
   getSurah(id: number): Observable<Surah> {
     const url = `${this.suwarUrl}/${id}`;
@@ -33,6 +34,15 @@ export class SuwarService {
     return this.http.get<Surah>(url);
   }
 
+
+  async sleep(milliseconds: number) {
+    let resolve: any;
+    let promise = new Promise((_resolve) => {
+      resolve = _resolve;
+    });
+    setTimeout(() => resolve(), milliseconds);
+    return promise;
+  }
   /**
  * Handle Http operation that failed.
  * Let the app continue.

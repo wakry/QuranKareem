@@ -10,13 +10,14 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any) {
     
     // Notify subscrivers
-    this.errorService.notifyError();
+    //this.errorService.notifyError();
 
-    // switch (error.constructor) {
-    //   case HttpErrorResponse:
-    //     console.error("An Error happened on the server");
-    //     break;
-    //   default:
-    //     console.error("An Error happened on the application");
+    switch (error.constructor) {
+      case HttpErrorResponse:
+        console.error("An Error happened on the server");
+        break;
+      default:
+        console.error("An Error happened on the application");
     }
   }
+}

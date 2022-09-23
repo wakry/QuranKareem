@@ -15,6 +15,7 @@ import { ErrorCatchingInterceptor } from './interceptors/error-catching.intercep
 import {GlobalErrorHandler} from './handlers/GlobalErrorHandler';
 import { NavBarButtonComponent } from './nav-bar-button/nav-bar-button.component';
 import { ErrorsBlockComponent } from './errors-block/errors-block.component';
+import { SurahListElementComponent } from './surah-list-element/surah-list-element.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ErrorsBlockComponent } from './errors-block/errors-block.component';
     ExplanationDialogComponent,
     NavBarButtonComponent,
     ErrorsBlockComponent,
+    SurahListElementComponent,
   ],
   imports: [
     BrowserModule,
