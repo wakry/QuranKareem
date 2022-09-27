@@ -10,9 +10,12 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
+import {MatSnackBarModule} from "@angular/material/snack-bar"
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
-
-const logoURL = "./assets/quran.svg"
+const quran_logo_url = "./assets/quran.svg"
+const allah_logo_url = "./assets/allah.svg"
 
 const MaterialComponents = [
   MatIconModule,
@@ -24,7 +27,10 @@ const MaterialComponents = [
   MatIconModule,
   MatToolbarModule,
   MatGridListModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatFormFieldModule
 ]
 @NgModule({
   declarations: [],
@@ -37,8 +43,14 @@ export class MaterialModule {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer) {
+
     this.matIconRegistry.addSvgIcon(
       "quran-icon",
-      this.domSanitizer.bypassSecurityTrustResourceUrl(logoURL));
+      this.domSanitizer.bypassSecurityTrustResourceUrl(quran_logo_url));
+
+    this.matIconRegistry.addSvgIcon(
+      "allah-icon",
+      this.domSanitizer.bypassSecurityTrustResourceUrl(allah_logo_url));
+
   }
 }

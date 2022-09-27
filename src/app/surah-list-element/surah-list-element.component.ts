@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Surah } from '../services/suwar.service';
+import { Surah } from '../model/surah';
 
 @Component({
   selector: 'app-surah-list-element',
@@ -8,9 +8,14 @@ import { Surah } from '../services/suwar.service';
 })
 export class SurahListElementComponent implements OnInit {
 
+  @Input() surah: Surah | undefined;
+
   constructor() { }
-  @Input() surah:Surah |undefined;
-  ngOnInit(): void {
+
+  ngOnInit(): void {}
+
+  doStuff() {
+    console.log("HELLO!!!");
   }
 
 }

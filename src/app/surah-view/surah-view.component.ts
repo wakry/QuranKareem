@@ -1,9 +1,10 @@
 import { NumberSymbol } from '@angular/common';
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExplanationDialogComponent } from '../explanation-dialog/explanation-dialog.component';
-import { Surah, SuwarService } from '../services/suwar.service';
+import { SuwarService } from '../services/suwar.service';
+import {Surah} from '../model/surah';
 
 @Component({
   selector: 'app-surah-view',

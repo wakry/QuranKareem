@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { appError } from '../model/appError';
 import { ErrorsService } from '../services/errors.service';
 
 @Component({
@@ -9,9 +10,8 @@ import { ErrorsService } from '../services/errors.service';
 })
 export class ErrorsBlockComponent implements OnInit {
 
-  @Input() message: string = "";
-  show$: Observable<boolean> = new Observable<boolean>();
-  show = true;
+  @Input() appError : appError | undefined;
+
   constructor() { }
 
   ngOnInit(): void { }

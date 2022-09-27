@@ -1,0 +1,12 @@
+.flex-container {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .buttons-container{
+    visibility: visible;
+    align-items: center ;
+    text-align: center;
+  }
+  

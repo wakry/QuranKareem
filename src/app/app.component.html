@@ -1,2 +1,3 @@
 <app-nav-bar></app-nav-bar>
+<app-errors-block [appError]="appError" [hidden]="appError?.code == '-1'"></app-errors-block>
 <router-outlet></router-outlet>

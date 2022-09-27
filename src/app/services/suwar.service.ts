@@ -2,25 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
-
-export interface Surah {
-  id: number;
-  arabicName: string;
-  englishName: string;
-  numberOfPages: number;
-  ayat: any;
-  words: any;
-  times: any;
-}
+import {Surah} from '../model/surah'
 
 @Injectable()
+
 export class SuwarService {
   suwarUrl = "http://localhost:4300/surah"
   constructor(private http: HttpClient) { }
 
 
   getSuwar(): Observable<Surah[]> {
-    return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(2000));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
+    return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(1000));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
   }
 
 
@@ -33,7 +25,6 @@ export class SuwarService {
     const url = `${this.suwarUrl}/${id}`;
     return this.http.get<Surah>(url);
   }
-
 
   async sleep(milliseconds: number) {
     let resolve: any;

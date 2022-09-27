@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Surah, SuwarService } from '../services/suwar.service';
+import {Surah} from '../model/surah';
+import { SuwarService } from '../services/suwar.service';
+
 
 @Component({
   selector: 'app-surah',
@@ -8,10 +10,15 @@ import { Surah, SuwarService } from '../services/suwar.service';
   providers: [SuwarService],
   styleUrls: ['./surah.component.css']
 })
-export class SurahComponent implements OnInit {
+export class SurahComponent implements OnInit, OnDestroy {
   id: any;
   surah: Surah | undefined;
   constructor(private route: ActivatedRoute, private suwarService: SuwarService) { }
+
+  ngOnDestroy(): void {
+    // Could we cancel the HTTP request on destroy? I am not sure
+    console.log("destroyed!");
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: { get: (arg0: string) => any; }) => {

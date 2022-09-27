@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+import { Observable } from 'rxjs';
+import { appError } from './model/appError';
 import { ErrorsService } from './services/errors.service';
 
 @Component({
@@ -8,13 +10,22 @@ import { ErrorsService } from './services/errors.service';
 })
 export class AppComponent {
 
-  showErrorsBlock = false;
-  constructor(public errorsService:ErrorsService){}
+  appError : appError | undefined;
+
+  constructor(private errorsService: ErrorsService, private ngZone: NgZone) {}
 
   ngOnInit() {
+    console.log("app called");
+    this.errorsService.cast.subscribe(
+      result => {
+        this.ngZone.run(() => {
+          this.appError = result;
+          console.log(this.appError);
+        });
+      });
   }
 
   title = 'QuranKareem';
-  }
+}
 
 

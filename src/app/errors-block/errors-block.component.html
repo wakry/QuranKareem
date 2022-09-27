@@ -1,9 +1,9 @@
-<div class="errors-block">
+<div class="errors-block" *ngIf="appError">
 <mat-card>
     <mat-card-content>
         <a class="icon-text">
             <mat-icon>error</mat-icon>
-            {{message}}
+            {{appError.message}}
         </a>
     </mat-card-content>
 </mat-card>

@@ -1,6 +1,7 @@
 <ng-container *ngIf="isLoading then loading"></ng-container>
 
 <ng-container *ngIf="suwar then displayResult"></ng-container>
+
 <ng-container *ngIf="isError then displayError"></ng-container>
 
 <!-- Loading template -->
@@ -14,8 +15,11 @@
 
 <!-- In case of results -->
 <ng-template #displayResult>
-      <div *ngIf="suwar">
-            <app-surah-list-element></app-surah-list-element>
+      <app-search-bar (newSearchEvent)="search($event)"></app-search-bar>
+      <div *ngIf="suwar" class="buttons-container">
+            <div *ngFor="let surah of suwarFiltered$" class="flex-container">
+                  <app-surah-list-element [surah]="surah"></app-surah-list-element>
+            </div>
       </div>
 </ng-template>
 
@@ -23,4 +27,3 @@
 <ng-template #displayError>
       <app-errors-block message="حدث خطأ أثناء إسترجاع البيانات من الخادم"></app-errors-block>
 </ng-template>
-

@@ -16,6 +16,11 @@ import {GlobalErrorHandler} from './handlers/GlobalErrorHandler';
 import { NavBarButtonComponent } from './nav-bar-button/nav-bar-button.component';
 import { ErrorsBlockComponent } from './errors-block/errors-block.component';
 import { SurahListElementComponent } from './surah-list-element/surah-list-element.component';
+import { SearchBarComponent } from './search-bar/search-bar.component'; 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -30,13 +35,18 @@ import { SurahListElementComponent } from './surah-list-element/surah-list-eleme
     NavBarButtonComponent,
     ErrorsBlockComponent,
     SurahListElementComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler }],
