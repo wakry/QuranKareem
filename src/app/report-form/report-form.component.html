@@ -1,0 +1,34 @@
+<div class="form-container">
+<h1 style="text-align:center">شاركنا رأيك أو إقتراحك</h1>
+
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <mat-grid-list cols="1" rowHeight="100">
+        <mat-grid-tile>
+            <mat-form-field appearance="fill" style="min-width: 50%;">
+                <mat-label>أدخل أسمك</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="name" required>
+                <mat-error *ngIf="reportForm.get('name')?.invalid">الإيميل غير صحيح</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field appearance="fill" style="min-width: 50%;">
+                <mat-label>أدخل أيميلك</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email">
+                <mat-error *ngIf="reportForm.get('email')?.invalid">الإيميل غير صحيح</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field appearance="fill" style="min-width: 50%;">
+                <mat-label>أدخل النص</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
+                    cdkAutosizeMaxRows="5" formControlName="content"></textarea>
+                <mat-error *ngIf="reportForm.get('content')?.invalid">الإيميل غير صحيح</mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-raised-button type="submit" [disabled]="!reportForm.valid">إرسال</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+</div>

@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {Surah} from '../model/surah';
-import { SuwarService } from '../services/suwar.service';
+import { SuwarService } from '../services/suwar/suwar.service';
 
 
 @Component({
   selector: 'app-surah',
-  templateUrl: './surah.component.html',
+  templateUrl: './surah-container.component.html',
   providers: [SuwarService],
-  styleUrls: ['./surah.component.css']
+  styleUrls: ['./surah-container.component.css']
 })
-export class SurahComponent implements OnInit, OnDestroy {
+export class SurahContainerComponent implements OnInit, OnDestroy {
   id: any;
   surah: Surah | undefined;
   constructor(private route: ActivatedRoute, private suwarService: SuwarService) { }

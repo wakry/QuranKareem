@@ -3,8 +3,9 @@ import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChil
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ExplanationDialogComponent } from '../explanation-dialog/explanation-dialog.component';
-import { SuwarService } from '../services/suwar.service';
+import { SuwarService } from '../services/suwar/suwar.service';
 import {Surah} from '../model/surah';
+import { ScreenService } from '../services/screen.service';
 
 @Component({
   selector: 'app-surah-view',
@@ -22,7 +23,8 @@ export class SurahViewComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private suwarService: SuwarService,
     private elRef: ElementRef,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private screenService : ScreenService) { }
     
   @ViewChild('audioElement') audio: any;
   id: any;
@@ -32,15 +34,22 @@ export class SurahViewComponent implements OnInit {
   nextPointer = 0;
   counter = 0;
   firstPageNumber = 1;
-  currentPageNumber = 1;
+  currentPageNumber = 0;
+  currentPageStartingIndex = 0
   lastPageNumber = 1;
   currentPageAyat: any = []
   currentView: number = 1;
+  isSmallScreen:boolean = false;
+
   //pageYoffset: number = 0;
 
   ngOnInit(): void {
 
     this.currentView = 1;
+
+    // this.screenService.isSmall.subscribe(
+    //   result =>{ this.isSmallScreen = result}
+    // )
 
   }
 
@@ -56,8 +65,9 @@ export class SurahViewComponent implements OnInit {
 
     // Set the current page number to the first page in the Surah.
     if (this.currentView == 3) {
-      this.currentPageNumber = this.surah?.ayat[0].pageNumber;
-      this.firstPageNumber = this.currentPageNumber;
+      if(this.currentPageNumber == 0) this.currentPageNumber = this.surah?.ayat[0].pageNumber;
+      //this.currentPageNumber = this.surah?.ayat[0].pageNumber;
+      this.firstPageNumber = this.surah?.ayat[0].pageNumber;
       if (this.surah?.numberOfPages)
         this.lastPageNumber = this.firstPageNumber + this.surah?.numberOfPages - 1;
       this.populatePageAyat();
@@ -73,7 +83,7 @@ export class SurahViewComponent implements OnInit {
   }
 
   public openTfsser(j:number){
-
+    console.log(j)
     this.openDialog(j);
     
   }
@@ -119,10 +129,10 @@ export class SurahViewComponent implements OnInit {
   public goNextPage() {
 
     if (this.currentPageNumber < this.lastPageNumber) {
-
       this.currentPageNumber++;
-      this.currentPageAyat = this.surah?.ayat.filter((ayah: any) => ayah.pageNumber === this.currentPageNumber);
-      this.scrollToTop();
+      this.currentPageStartingIndex += this.currentPageAyat.length;
+      this.populatePageAyat()
+      //this.scrollToTop();
 
     } else {
 
@@ -135,10 +145,9 @@ export class SurahViewComponent implements OnInit {
   public goPreviousPage() {
 
     if (this.currentPageNumber > this.firstPageNumber) {
-
       this.currentPageNumber--;
       this.populatePageAyat();
-
+      this.currentPageStartingIndex-=this.currentPageAyat.length;
     } else {
 
       console.log("At first page");
@@ -148,10 +157,7 @@ export class SurahViewComponent implements OnInit {
   }
 
   private populatePageAyat() {
-
     this.currentPageAyat = this.surah?.ayat.filter((ayah: any) => ayah.pageNumber === this.currentPageNumber);
-    console.log(this.currentPageAyat);
-
   }
 
   scrollToTop() {
@@ -160,7 +166,6 @@ export class SurahViewComponent implements OnInit {
 
   
   openDialog(id:number) {
-    console.log(this.surah?.ayat[id]);
     const dialogRef = this.dialog.open(ExplanationDialogComponent,{data:this.surah?.ayat[id]});
 
     dialogRef.afterClosed().subscribe(result => {

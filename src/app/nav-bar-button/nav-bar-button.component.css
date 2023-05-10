@@ -1,0 +1,9 @@
+span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.button-div {
+    display: flex;
+    align-items: center;
+  }

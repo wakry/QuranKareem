@@ -2,14 +2,14 @@
 <ng-container *ngIf="surah">
     <mat-button-toggle-group class="sticky_toggle_group" #group="matButtonToggleGroup" [value]="currentView"
         name="surahViewToggleGroup" aria-label="Surah View" (change)="changeView($event.value)">
-        <mat-button-toggle class="toggle_button" value="1">ALL</mat-button-toggle>
-        <mat-button-toggle class="toggle_button" value="2">AYAH</mat-button-toggle>
-        <mat-button-toggle class="toggle_button" value="3">Page</mat-button-toggle>
+        <mat-button-toggle class="toggle_button" value="1">عرض كامل</mat-button-toggle>
+        <mat-button-toggle class="toggle_button" value="2">عرض بالآية</mat-button-toggle>
+        <mat-button-toggle class="toggle_button" value="3">عرض بالصفحة</mat-button-toggle>
     </mat-button-toggle-group>
     <!-- Audio Player -->
-    <div>
+    <!-- <div>
         <app-audio-player #audioElement src="assets\001.ogg"></app-audio-player>
-    </div>
+    </div> -->
     <mat-card class="scrollable-content">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -19,27 +19,18 @@
         <mat-card-content>
             <ng-container *ngIf="currentView==1">
                     <ng-container *ngFor="let ayah of surah.ayat; index as j">
-                        <ng-container  class="ayah" *ngFor="let word of ayah.words;let last = last; index as i">
-                            <span *ngIf="!last" class="ayah" (click)="play(i)"> {{word}}</span>
-                            <span *ngIf="last" class="ayah" (click)="openTfsser(j)"> {{word}}</span>
-                        </ng-container>
+                        <span class="ayah" (click)="openTfsser(j)"> {{ayah.textForHtml}}</span>
                     </ng-container>
             </ng-container>
 
             <ng-container *ngIf="currentView==2">
-                <ng-container class="ayah" *ngFor="let word of surah.ayat[nextPointer].words;let last = last; index as i; trackBy:trackword">
-                    <span *ngIf="!last" class="ayah" (click)="play(i)"> {{word}}</span>
-                    <span *ngIf="last" class="ayah" (click)="openTfsser(nextPointer)"> {{word}}</span>
-                </ng-container>
+                <span class="ayah" (click)="openTfsser(nextPointer)"> {{surah.ayat[nextPointer].textForHtml}}</span>
             </ng-container>
 
             <ng-container *ngIf="currentView==3">
-                    <span (click)="play(i)"
-                        *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
-                        <span class="ayah" (click)="play(i)" *ngFor="let word of ayah.words; index as i">
-                            {{word}}
-                        </span>
-                    </span>
+                    <ng-container *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
+                        <span (click)="openTfsser(i + currentPageStartingIndex)" class="ayah">{{ayah.textForHtml}}</span>
+                    </ng-container>
             </ng-container>
 
         </mat-card-content>
@@ -57,3 +48,11 @@
             (click)="goNextPage()">التالي</button>
     </div>
 </ng-container>
+
+
+<div class="surah-tools">
+    <button mat-mini-fab color="accent" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
+        <mat-icon>arrow_upward</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" title="حفظ في قائمة الدخول السريع">حفظ</button>
+</div>

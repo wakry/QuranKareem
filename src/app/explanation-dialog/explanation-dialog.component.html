@@ -1,9 +1,12 @@
-<ng-container *ngIf="ayat">
+<ng-container *ngIf="ayah">
     <button mat-mini-fab mat-dialog-close color="white"> 
         <mat-icon>close</mat-icon>
     </button>
+    <button mat-mini-fab  color="red" (click)="openReportDialog()"> 
+        <mat-icon>report</mat-icon>
+    </button>
     <mat-dialog-content class="mat-typography dialog">
-        <mat-tab-group *ngFor="let tfseer of ayat.explanations">
+        <mat-tab-group *ngFor="let tfseer of ayah.explanations">
             <mat-tab [label]="tfseer.source.arabicName">
                 {{tfseer.explanationText}}
             </mat-tab>

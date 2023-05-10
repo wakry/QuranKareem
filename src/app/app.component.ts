@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 import { appError } from './model/appError';
-import { ErrorsService } from './services/errors.service';
+import { NotificationsService } from './services/notifications/notifications.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +12,11 @@ export class AppComponent {
 
   appError : appError | undefined;
 
-  constructor(private errorsService: ErrorsService, private ngZone: NgZone) {}
+  constructor(private ns: NotificationsService, private ngZone: NgZone) {}
 
   ngOnInit() {
     console.log("app called");
-    this.errorsService.cast.subscribe(
+    this.ns.cast.subscribe(
       result => {
         this.ngZone.run(() => {
           this.appError = result;

@@ -1,0 +1,14 @@
+<div style="width:50vw">
+  <div>
+    <mat-form-field style="width:100%">
+      <textarea matInput placeholder="أشرح المشكلة" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5" [(ngModel)]='reportText'></textarea>
+    </mat-form-field>
+  </div>
+
+  <div style="text-align: center;">
+    <button mat-button [mat-dialog-close]='{send:true, reportText: reportText}'>إرسال</button>
+  </div>
+
+</div>
+

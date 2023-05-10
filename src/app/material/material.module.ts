@@ -13,6 +13,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import {MatSnackBarModule} from "@angular/material/snack-bar"
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 const quran_logo_url = "./assets/quran.svg"
 const allah_logo_url = "./assets/allah.svg"
@@ -30,7 +32,8 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatSnackBarModule,
   MatAutocompleteModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatDividerModule
 ]
 @NgModule({
   declarations: [],

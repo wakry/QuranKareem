@@ -1,5 +1,13 @@
-
 <button mat-raised-button>
-    <mat-icon svgIcon="{{logoName}}"></mat-icon>
-    <span>{{title}}</span>
+    <div class="button-div">
+        <ng-container *ngIf="isCustom; else elseBlock">
+            <mat-icon svgIcon="{{logoName}}"></mat-icon>
+        </ng-container>
+        <span>{{title}}</span>
+    </div>
 </button>
+
+<ng-template #elseBlock>
+    <mat-icon>{{logoName}}</mat-icon>
+</ng-template>
+

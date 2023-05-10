@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { appError } from '../model/appError';
-import { ErrorsService } from '../services/errors.service';
+import { NotificationsService } from '../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-errors-block',

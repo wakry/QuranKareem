@@ -1,7 +1,9 @@
-<ng-container>
+<ng-container *ngIf="surah">
     <div class="surah_view_div">
         <app-surah-view *ngIf="surah" [surah]="surah"></app-surah-view>
     </div>
 </ng-container>
 
-<mat-spinner></mat-spinner>
+<ng-container *ngIf="!surah">
+   <app-spinner></app-spinner>
+</ng-container>

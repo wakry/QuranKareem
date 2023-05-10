@@ -1,5 +1,5 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { SuwarService } from '../services/suwar.service';
+import { SuwarService } from '../services/suwar/suwar.service';
 import { Surah } from '../model/surah'
 import { tap, finalize, map, startWith } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -65,15 +65,13 @@ export class SuwarComponent implements OnInit, OnDestroy {
     return text;
   }
 
-
-
   showSuwar() {
     this.suwarService.getSuwar().pipe(
       finalize(() => {
         this.isLoading = false;
       })
     ).subscribe(
-      success => { this.suwar = success},
+      success => { this.suwar = success, this.suwarFiltered$ = this.suwar},
       error => { this.isError = true; throw error; });
   }
 

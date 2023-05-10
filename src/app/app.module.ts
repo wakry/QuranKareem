@@ -5,22 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SuwarComponent } from './suwar/suwar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { SurahComponent } from './surah/surah.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { SurahViewComponent } from './surah-view/surah-view.component';
 import { ExplanationDialogComponent } from './explanation-dialog/explanation-dialog.component';
-import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
-import {GlobalErrorHandler} from './handlers/GlobalErrorHandler';
+import { GlobalErrorHandler } from './handlers/GlobalErrorHandler';
 import { NavBarButtonComponent } from './nav-bar-button/nav-bar-button.component';
 import { ErrorsBlockComponent } from './errors-block/errors-block.component';
 import { SurahListElementComponent } from './surah-list-element/surah-list-element.component';
-import { SearchBarComponent } from './search-bar/search-bar.component'; 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ReportFormComponent } from './report-form/report-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { SurahContainerComponent } from './surah-container/surah-container.component';
+import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     SuwarComponent,
     NavBarComponent,
-    SurahComponent,
+    SurahContainerComponent,
     AudioPlayerComponent,
     SurahViewComponent,
     ExplanationDialogComponent,
@@ -36,6 +38,10 @@ import { MatInputModule } from '@angular/material/input';
     ErrorsBlockComponent,
     SurahListElementComponent,
     SearchBarComponent,
+    SpinnerComponent,
+    ReportFormComponent,
+    SurahContainerComponent,
+    ReportDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler }],

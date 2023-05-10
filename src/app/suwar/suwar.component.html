@@ -4,13 +4,10 @@
 
 <ng-container *ngIf="isError then displayError"></ng-container>
 
+
 <!-- Loading template -->
 <ng-template #loading>
-      <div id="pluswrap">
-            <div class="plus">
-                  <mat-spinner class="center" color="accent"></mat-spinner>
-            </div>
-      </div>
+<app-spinner></app-spinner>
 </ng-template>
 
 <!-- In case of results -->

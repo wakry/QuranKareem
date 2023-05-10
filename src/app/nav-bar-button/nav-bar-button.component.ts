@@ -9,6 +9,7 @@ export class NavBarButtonComponent implements OnInit {
 
   @Input() title:string|undefined;
   @Input() logoName:string|undefined;
+  @Input() isCustom:boolean = false;
   
   constructor() { }
 

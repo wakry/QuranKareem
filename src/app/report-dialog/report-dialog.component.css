@@ -1,0 +1,9 @@
+.report-dailog-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .report-dialig-container > * {
+    width: 100%;
+
+  }

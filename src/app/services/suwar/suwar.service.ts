@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import {Surah} from '../model/surah'
+import {Surah} from '../../model/surah'
 
 @Injectable()
 
@@ -12,18 +12,18 @@ export class SuwarService {
 
 
   getSuwar(): Observable<Surah[]> {
-    return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(1000));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
+    return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(0));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
   }
 
 
   getSurah(id: number): Observable<Surah> {
     const url = `${this.suwarUrl}/${id}`;
-    return this.http.get<Surah>(url);
+    return this.http.get<Surah>(url).pipe(delay(0));
   }
 
   getSurahWordByWord(id: number): Observable<Surah> {
     const url = `${this.suwarUrl}/${id}`;
-    return this.http.get<Surah>(url);
+    return this.http.get<Surah>(url).pipe(delay(0));
   }
 
   async sleep(milliseconds: number) {
@@ -34,6 +34,12 @@ export class SuwarService {
     setTimeout(() => resolve(), milliseconds);
     return promise;
   }
+
+
+  getArabicTextWithoutDiacritics(text:string): string{
+    return text.replace(/[ؐ-ًؕ-ٖٓ-ٟۖ-ٰٰۭ]/g,'');;
+  }
+  
   /**
  * Handle Http operation that failed.
  * Let the app continue.
