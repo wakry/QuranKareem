@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  title: 'Quran Kareem',
+  apiURL: 'http://localhost:8000'
 };

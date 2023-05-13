@@ -51,6 +51,7 @@ $dark-theme: mat.define-dark-theme((
 @include mat.form-field-theme($dark-theme); // Form-Field theme
 @include mat.input-theme($dark-theme);      // Input Theme
 @include mat.autocomplete-theme($dark-theme);
+@include mat.menu-theme($dark-theme);
 
 // Apply the light theme only when the `.my-light-theme` CSS class is applied
 // to an ancestor element of the components (such as `body`).

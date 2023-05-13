@@ -1,11 +1,12 @@
 import { NumberSymbol } from '@angular/common';
 import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExplanationDialogComponent } from '../explanation-dialog/explanation-dialog.component';
-import { SuwarService } from '../services/suwar/suwar.service';
-import {Surah} from '../model/surah';
-import { ScreenService } from '../services/screen.service';
+import { SuwarService } from '../../services/suwar/suwar.service';
+import {Surah} from '../../model/surah';
+import { ScreenService } from '../../services/screen.service';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-surah-view',
@@ -20,19 +21,20 @@ export class SurahViewComponent implements OnInit {
   //   this.pageYoffset = window.pageYOffset;
   // }
 
-  constructor(private route: ActivatedRoute,
+  constructor(
     private suwarService: SuwarService,
     private elRef: ElementRef,
     public dialog: MatDialog,
-    private screenService : ScreenService) { }
+    private screenService: ScreenService,
+    private router: Router,
+    private notification: NotificationsService
+  ) { }
     
   @ViewChild('audioElement') audio: any;
-  id: any;
   @Input() surah: Surah | undefined;
-  count = 0;
+  @Input() isSaved: boolean = false
   previousPointer = -1;
   nextPointer = 0;
-  counter = 0;
   firstPageNumber = 1;
   currentPageNumber = 0;
   currentPageStartingIndex = 0
@@ -44,20 +46,25 @@ export class SurahViewComponent implements OnInit {
   //pageYoffset: number = 0;
 
   ngOnInit(): void {
-
-    this.currentView = 1;
-
-    // this.screenService.isSmall.subscribe(
-    //   result =>{ this.isSmallScreen = result}
-    // )
-
+    try {
+      if (this.isSaved) {
+        let savedJson = JSON.parse(this.suwarService.getSurahFromLocalStorage())
+        this.previousPointer = savedJson["previousPointer"];
+        this.nextPointer = savedJson["nextPointer"];
+        this.firstPageNumber = savedJson["firstPageNumber"];
+        this.currentPageNumber = savedJson["currentPageNumber"];
+        this.currentPageStartingIndex = savedJson["currentPageStartingIndex"];
+        this.lastPageNumber = savedJson["lastPageNumber"];
+        this.currentView = savedJson["currentView"];
+        this.changeView(this.currentView)
+      } else {
+        this.currentView = 1;
+      }
+    } catch (e:any) {
+      this.router.navigate(['/'])
+      this.notification.showErrorSnackBar(e.message)
+    }
   }
-
-
-  // private getSurah(id: number) {
-  //   id = parseInt(this.id);
-  //   this.suwarService.getSurahWordByWord(id).subscribe(surah => this.surah = surah);
-  // }
 
   public changeView(value: any) {
 
@@ -71,27 +78,20 @@ export class SurahViewComponent implements OnInit {
       if (this.surah?.numberOfPages)
         this.lastPageNumber = this.firstPageNumber + this.surah?.numberOfPages - 1;
       this.populatePageAyat();
-
-    }
-
+    }   
   }
 
   public play(i: number) {
-
     this.audio.playAt(this.surah?.times[i]);
-    
   }
 
   public openTfsser(j:number){
     console.log(j)
     this.openDialog(j);
-    
   }
 
   public getSurahText() {
-
     console.log(this.surah?.arabicName);
-
   }
 
   public trackword(index: number, word: string) {
@@ -100,46 +100,31 @@ export class SurahViewComponent implements OnInit {
 
   public goNext() {
     if (this.surah?.ayat.length - 1 > this.nextPointer) {
-
       this.previousPointer = this.nextPointer;
       this.nextPointer = this.nextPointer + 1;
-
     } else {
-
       console.log("no more ayat!");
-
     }
-
   }
 
   public goPrevious() {
     if (this.previousPointer > -1) {
-
       this.nextPointer = this.previousPointer;
       this.previousPointer = this.previousPointer - 1;
-
     } else {
-
       console.log("At the start!");
-
     }
-
   }
 
   public goNextPage() {
-
     if (this.currentPageNumber < this.lastPageNumber) {
       this.currentPageNumber++;
       this.currentPageStartingIndex += this.currentPageAyat.length;
       this.populatePageAyat()
       //this.scrollToTop();
-
     } else {
-
       console.log("At last page");
-
     }
-
   }
 
   public goPreviousPage() {
@@ -164,6 +149,20 @@ export class SurahViewComponent implements OnInit {
     this.elRef.nativeElement.scrollIntoView();
   }
 
+  save(){
+    let value = {
+      "surahId": this.surah?.id,
+      "previousPointer": this.previousPointer,
+      "nextPointer": this.nextPointer,
+      "firstPageNumber": this.firstPageNumber,
+      "currentPageNumber": this.currentPageNumber,
+      "currentPageStartingIndex": this.currentPageStartingIndex,
+      "lastPageNumber": this.lastPageNumber,
+      "currentView": this.currentView
+    }
+
+    this.suwarService.saveSurahInLocalStorage(value)
+  }
   
   openDialog(id:number) {
     const dialogRef = this.dialog.open(ExplanationDialogComponent,{data:this.surah?.ayat[id]});

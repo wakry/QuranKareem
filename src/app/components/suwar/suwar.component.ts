@@ -1,13 +1,12 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { SuwarService } from '../services/suwar/suwar.service';
-import { Surah } from '../model/surah'
+import { SuwarService } from '../../services/suwar/suwar.service';
+import { Surah } from '../../model/surah'
 import { tap, finalize, map, startWith } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-suwar',
   templateUrl: './suwar.component.html',
-  providers: [SuwarService],
   styleUrls: ['./suwar.component.css']
 })
 export class SuwarComponent implements OnInit, OnDestroy {

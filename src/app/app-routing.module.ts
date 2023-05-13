@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReportFormComponent } from './report-form/report-form.component';
-import { SurahContainerComponent } from './surah-container/surah-container.component';
-import { SuwarComponent } from './suwar/suwar.component';
+import { ReportFormComponent } from './components/report-form/report-form.component';
+import { SurahContainerComponent } from './components/surah-container/surah-container.component';
+import { SuwarComponent } from './components/suwar/suwar.component';
 
 const routes: Routes = [
-  {path:'suwar', component: SuwarComponent},
+  {path:'', component: SuwarComponent},
   {path:'suwar/:id', component: SurahContainerComponent},
   {path:'report',component:ReportFormComponent}
 ];

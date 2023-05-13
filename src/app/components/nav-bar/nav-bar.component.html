@@ -4,9 +4,9 @@
   </ng-container>
 
   <span class="navbar-spacer"></span>
-  <button mat-icon-button class="favorite-icon" aria-label="Example icon-button with heart icon" (click)=" bookmark()">
-    <mat-icon>favorite</mat-icon>
-  </button>
+  <!-- stupid angular -->
+  <!-- [routerLink]="['/suwar', 'saved']" -->
+  <span [hidden]='!showContinueButton'><button mat-raised-button color="warn" class="buttons-groups" (click)="goToSaved()">متابعة الحفظ</button></span>
   <button mat-icon-button aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
@@ -14,8 +14,6 @@
 
 <ng-template #navVarButtons>
   <app-nav-bar-button title="الرئيسية" logoName="star" class="buttons-groups" [routerLink]="['/']"></app-nav-bar-button>
-  <app-nav-bar-button title="المصحف" logoName="quran-icon" logoName="quran-icon" [isCustom]="true"
-    class="buttons-groups" [routerLink]="['/suwar']"></app-nav-bar-button>
   <app-nav-bar-button title="للإقتراحات" logoName="report" class="buttons-groups"
     [routerLink]="['/report']"></app-nav-bar-button>
 </ng-template>
@@ -28,10 +26,6 @@
     <button mat-menu-item [routerLink]="['/']">
       <mat-icon>dialpad</mat-icon>
       <span>الرئيسية</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/suwar']">
-      <mat-icon svgIcon="quran-icon"></mat-icon>
-      <span>المصحف</span>
     </button>
     <button mat-menu-item [routerLink]="['/report']">
       <mat-icon>report</mat-icon>

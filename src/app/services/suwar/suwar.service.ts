@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import {Surah} from '../../model/surah'
+import { NONE_TYPE } from '@angular/compiler';
+import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class SuwarService {
-  suwarUrl = "http://localhost:4300/surah"
-  constructor(private http: HttpClient) { }
+  suwarUrl = environment.apiURL+"surah"
 
+  savedBS = new BehaviorSubject<any>(localStorage.getItem("surahInfo"));
+
+  constructor(private http: HttpClient) {}
 
   getSuwar(): Observable<Surah[]> {
     return this.http.get<Surah[]>(this.suwarUrl).pipe(delay(0));//.pipe(catchError(this.handleError<Surah[]>('getSuwar')));
@@ -40,6 +46,16 @@ export class SuwarService {
     return text.replace(/[ؐ-ًؕ-ٖٓ-ٟۖ-ٰٰۭ]/g,'');;
   }
   
+
+  saveSurahInLocalStorage(surahInfo: any) {
+    let _surahInfo = JSON.stringify(surahInfo)
+    localStorage.setItem("surahInfo", _surahInfo)
+    this.savedBS.next(_surahInfo);
+  }
+
+  getSurahFromLocalStorage(): string {
+    return this.savedBS.getValue()
+  }
   /**
  * Handle Http operation that failed.
  * Let the app continue.

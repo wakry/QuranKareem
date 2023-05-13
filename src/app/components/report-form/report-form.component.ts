@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Report } from '../model/report';
-import { ReportService } from '../services/report/report.service';
-import { NotificationsService } from '../services/notifications/notifications.service';
+import { Report } from '../../model/report';
+import { ReportService } from '../../services/report/report.service';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 
 
 

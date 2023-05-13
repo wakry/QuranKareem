@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Surah } from '../model/surah';
+import { Surah } from '../../model/surah';
 
 @Component({
   selector: 'app-surah-list-element',

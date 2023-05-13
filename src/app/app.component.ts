@@ -1,7 +1,9 @@
 import { Component, NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { appError } from './model/appError';
 import { NotificationsService } from './services/notifications/notifications.service';
+import { environment } from 'src/environments/environment';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,9 @@ import { NotificationsService } from './services/notifications/notifications.ser
 })
 export class AppComponent {
 
-  appError : appError | undefined;
+  appError: appError | undefined;
 
-  constructor(private ns: NotificationsService, private ngZone: NgZone) {}
+  constructor(private ns: NotificationsService, private ngZone: NgZone, private titleService: Title) { }
 
   ngOnInit() {
     console.log("app called");
@@ -23,9 +25,8 @@ export class AppComponent {
           console.log(this.appError);
         });
       });
+    this.titleService.setTitle(environment.title);
   }
-
-  title = 'QuranKareem';
 }
 
 
