@@ -46,7 +46,6 @@ export class AudioPlayerComponent implements AfterViewInit {
     if (this.audio) {
       if (this.audio.readyState >= 2) {
         this.audio.currentTime = time/1000;
-        console.log(this.audio.currentTime)
         this.audio.play();
         this.audioStateLabel = 'Playing...'
       }

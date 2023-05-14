@@ -17,7 +17,6 @@ export class AppComponent {
   constructor(private ns: NotificationsService, private ngZone: NgZone, private titleService: Title) { }
 
   ngOnInit() {
-    console.log("app called");
     this.ns.cast.subscribe(
       result => {
         this.ngZone.run(() => {

@@ -6,8 +6,8 @@
   <span class="navbar-spacer"></span>
   <!-- stupid angular -->
   <!-- [routerLink]="['/suwar', 'saved']" -->
-  <span [hidden]='!showContinueButton'><button mat-raised-button color="warn" class="buttons-groups" (click)="goToSaved()">متابعة الحفظ</button></span>
-  <button mat-icon-button aria-label="Example icon-button with share icon">
+  <span [hidden]='!showContinueButton'><button mat-raised-button color="warn" class="buttons-groups" (click)="goToSaved($event)">متابعة الحفظ</button></span>
+  <button mat-icon-button aria-label="Example icon-button with share icon" (click)="share()">
     <mat-icon>share</mat-icon>
   </button>
 </mat-toolbar>

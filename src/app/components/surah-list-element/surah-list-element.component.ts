@@ -15,7 +15,7 @@ export class SurahListElementComponent implements OnInit {
   ngOnInit(): void {}
 
   doStuff() {
-    console.log("HELLO!!!");
+
   }
 
 }

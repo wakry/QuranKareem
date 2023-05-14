@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DateService } from '../../services/date/date.service'; 
 import { ScreenService } from '../../services/screen.service';
 import { SuwarService } from '../../services/suwar/suwar.service';
+import {Clipboard} from '@angular/cdk/clipboard';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ import { SuwarService } from '../../services/suwar/suwar.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router: Router, private dateService: DateService, public screenService: ScreenService, private suwarService: SuwarService){ }
+  constructor(private router: Router, private dateService: DateService, public screenService: ScreenService, private suwarService: SuwarService,private clipboard: Clipboard){ }
   date:any;
   showMenu:any ;
   showContinueButton:boolean = false;
@@ -31,12 +33,19 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl('/suwar');
   }
 
-  goToSaved(){
-    this.router.navigate(['/suwar',"saved"])
+  goToSaved(event:any){
+    event.preventDefault();
+
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(['/suwar',"saved"]));
   }
 
  bookmark() {
   window.close();
+  }
+
+  share() {
+    this.clipboard.copy(window.location.href);
   }
 
 }

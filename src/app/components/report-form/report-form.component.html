@@ -6,8 +6,8 @@
         <mat-grid-tile>
             <mat-form-field appearance="fill" style="min-width: 50%;">
                 <mat-label>أدخل أسمك</mat-label>
-                <input matInput placeholder="pat@example.com" formControlName="name" required>
-                <mat-error *ngIf="reportForm.get('name')?.invalid">الإيميل غير صحيح</mat-error>
+                <input matInput placeholder="أسمك" formControlName="name" required>
+                <mat-error *ngIf="reportForm.get('name')?.invalid">الأسم غير صحيح</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
@@ -23,7 +23,7 @@
                 <mat-label>أدخل النص</mat-label>
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
                     cdkAutosizeMaxRows="5" formControlName="content"></textarea>
-                <mat-error *ngIf="reportForm.get('content')?.invalid">الإيميل غير صحيح</mat-error>
+                <mat-error *ngIf="reportForm.get('content')?.invalid">النص غير صحيح</mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>

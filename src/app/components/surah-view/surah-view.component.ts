@@ -86,12 +86,10 @@ export class SurahViewComponent implements OnInit {
   }
 
   public openTfsser(j:number){
-    console.log(j)
     this.openDialog(j);
   }
 
   public getSurahText() {
-    console.log(this.surah?.arabicName);
   }
 
   public trackword(index: number, word: string) {
@@ -150,25 +148,30 @@ export class SurahViewComponent implements OnInit {
   }
 
   save(){
-    let value = {
-      "surahId": this.surah?.id,
-      "previousPointer": this.previousPointer,
-      "nextPointer": this.nextPointer,
-      "firstPageNumber": this.firstPageNumber,
-      "currentPageNumber": this.currentPageNumber,
-      "currentPageStartingIndex": this.currentPageStartingIndex,
-      "lastPageNumber": this.lastPageNumber,
-      "currentView": this.currentView
-    }
+    try {
+      let value = {
+        "surahId": this.surah?.id,
+        "previousPointer": this.previousPointer,
+        "nextPointer": this.nextPointer,
+        "firstPageNumber": this.firstPageNumber,
+        "currentPageNumber": this.currentPageNumber,
+        "currentPageStartingIndex": this.currentPageStartingIndex,
+        "lastPageNumber": this.lastPageNumber,
+        "currentView": this.currentView
+      }
 
-    this.suwarService.saveSurahInLocalStorage(value)
+      this.suwarService.saveSurahInLocalStorage(value)
+      this.notification.showNotificationSnackBar("تم الحفظ بنجاح");
+
+    } catch (e) {
+      this.notification.showErrorSnackBar("لم يتم الحفظ حدث خطأ")
+    }
   }
   
   openDialog(id:number) {
     const dialogRef = this.dialog.open(ExplanationDialogComponent,{data:this.surah?.ayat[id]});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

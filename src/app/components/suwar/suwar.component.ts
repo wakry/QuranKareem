@@ -60,7 +60,6 @@ export class SuwarComponent implements OnInit, OnDestroy {
   // Work on this it has issues with greek and latin characters!
   getEnglishTextNormalized(text: string): string {
     text= text.replace(/[^A-Za-z']/g, "");
-    console.log("after replace is : ", text);
     return text;
   }
 

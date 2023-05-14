@@ -18,7 +18,6 @@ export class SurahContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // Could we cancel the HTTP request on destroy? I am not sure
-    console.log("destroyed!");
   }
 
   ngOnInit(): void {

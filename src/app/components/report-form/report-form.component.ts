@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Report } from '../../model/report';
 import { ReportService } from '../../services/report/report.service';
 import { NotificationsService } from '../../services/notifications/notifications.service';
+import { Router } from '@angular/router';
 
 
 
@@ -19,7 +20,7 @@ export class ReportFormComponent implements OnInit {
     content: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private rs: ReportService, private ns: NotificationsService) { }
+  constructor(private fb: FormBuilder, private rs: ReportService, private ns: NotificationsService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +29,7 @@ export class ReportFormComponent implements OnInit {
     this.rs.postReport(this.reportForm.value as Report).subscribe(
       success => {
         this.ns.showNotificationSnackBar(success.name + " تم الإرسال شكراً لك");
-        this.reportForm.reset()
+        this.router.navigate(['/']);
       },
       error => { this.ns.showErrorSnackBar("حدث خطأ ولم يتم الإرسال"); }
     );
