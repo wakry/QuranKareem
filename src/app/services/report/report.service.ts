@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportService {
 
-  suwarUrl = +environment.apiURL+"report/"
+  suwarUrl = environment.apiURL+"report/"
   constructor(private http: HttpClient) { }
 
   postReport(formData: Report): Observable<Report> {
