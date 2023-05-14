@@ -5,6 +5,7 @@ import { DateService } from '../../services/date/date.service';
 import { ScreenService } from '../../services/screen.service';
 import { SuwarService } from '../../services/suwar/suwar.service';
 import {Clipboard} from '@angular/cdk/clipboard';
+import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 
 
 
@@ -15,7 +16,7 @@ import {Clipboard} from '@angular/cdk/clipboard';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router: Router, private dateService: DateService, public screenService: ScreenService, private suwarService: SuwarService,private clipboard: Clipboard){ }
+  constructor(private router: Router, private dateService: DateService, public screenService: ScreenService, private suwarService: SuwarService, private clipboard: Clipboard, private ns: NotificationsService) { }
   date:any;
   showMenu:any ;
   showContinueButton:boolean = false;
@@ -40,12 +41,19 @@ export class NavBarComponent implements OnInit {
       .then(() => this.router.navigate(['/suwar',"saved"]));
   }
 
- bookmark() {
-  window.close();
+  bookmark() {
+    window.close();
   }
 
   share() {
+    try {
+      this.clipboard.copy(window.location.href);
+      this.ns.showNotificationSnackBar("تم النسخ الرابط للمشاركة")
+    } catch (e) {
+      this.ns.showErrorSnackBar("لم يتم نسخ الرابط")
+    }
     this.clipboard.copy(window.location.href);
+
   }
 
 }
