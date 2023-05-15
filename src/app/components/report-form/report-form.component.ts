@@ -16,7 +16,7 @@ export class ReportFormComponent implements OnInit {
 
   reportForm = this.fb.group({
     name: ['', Validators.required],
-    email: ['', Validators.email],
+    email: ['', Validators.compose([Validators.email, Validators.required])],
     content: ['', Validators.required]
   });
 
