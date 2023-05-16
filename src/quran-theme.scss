@@ -3,7 +3,7 @@
 @include mat.core();
 
 // Define a light theme
-$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-primary: mat.define-palette(mat.$brown-palette);
 $light-accent: mat.define-palette(mat.$pink-palette);
 $light-warn: mat.define-palette(mat.$red-palette,500);
 $light-theme: mat.define-light-theme((
