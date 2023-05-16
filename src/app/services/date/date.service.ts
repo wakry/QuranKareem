@@ -7,8 +7,12 @@ export class DateService {
 
   constructor() { }
 
-  getDate(){
-    return new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'numeric',weekday: 'long',year : 'numeric'}).format(Date.now());
+  getDateLong(){
+    return new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(Date.now());
+  }
+
+  getDateNum(){
+    return new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'numeric',year : 'numeric'}).format(Date.now());
   }
 
 }

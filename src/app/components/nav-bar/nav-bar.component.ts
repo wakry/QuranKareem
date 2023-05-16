@@ -17,13 +17,15 @@ import { NotificationsService } from 'src/app/services/notifications/notificatio
 export class NavBarComponent implements OnInit {
 
   constructor(private router: Router, private dateService: DateService, public screenService: ScreenService, private suwarService: SuwarService, private clipboard: Clipboard, private ns: NotificationsService) { }
-  date:any;
+  dateLong:any;
+  dateNum:any;
   showMenu:any ;
   showContinueButton:boolean = false;
   savedObj:any;
   mode = "toggle_off"
   ngOnInit(): void {
-    this.date = this.dateService.getDate()|| 'Error';
+    this.dateLong = this.dateService.getDateLong()|| 'Error';
+    this.dateNum = this.dateService.getDateNum()|| 'Error';
     this.screenService.isSmall.subscribe(
       result => this.showMenu = result
     )

@@ -1,4 +1,9 @@
+
 <mat-toolbar>
+  <mat-toolbar-row style="height:10%">
+      <span style="font-size:x-small">{{this.dateLong}} - {{this.dateNum}}</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
   <ng-container *ngIf="screenService.isSmall |async then menu ;else navVarButtons" >
 
   </ng-container>
@@ -13,6 +18,7 @@
   <button mat-icon-button aria-label="Example icon-button with share icon" (click)="toggleTheme()">
     <mat-icon>{{mode}}</mat-icon>
   </button>
+</mat-toolbar-row>
 </mat-toolbar>
 
 <ng-template #navVarButtons>
