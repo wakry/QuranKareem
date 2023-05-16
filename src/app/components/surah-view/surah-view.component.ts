@@ -7,6 +7,7 @@ import { SuwarService } from '../../services/suwar/suwar.service';
 import {Surah} from '../../model/surah';
 import { ScreenService } from '../../services/screen.service';
 import { NotificationsService } from '../../services/notifications/notifications.service';
+import { GeneralDialogComponent } from '../general-dialog/general-dialog.component';
 
 @Component({
   selector: 'app-surah-view',
@@ -161,8 +162,8 @@ export class SurahViewComponent implements OnInit {
       }
 
       this.suwarService.saveSurahInLocalStorage(value)
-      this.notification.showNotificationSnackBar("تم الحفظ بنجاح");
-
+      //this.notification.showNotificationSnackBar("تم الحفظ بنجاح");
+      this.dialog.open(GeneralDialogComponent, { data: {title:"تم الحفظ بنجاح",message:"يمكنك الإكمال لاحقاً بالضغط على زر متابعة الحفظ في الأعلى",buttonText:"الإستمرار" }});
     } catch (e) {
       this.notification.showErrorSnackBar("لم يتم الحفظ حدث خطأ")
     }

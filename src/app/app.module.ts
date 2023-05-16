@@ -23,6 +23,7 @@ import { ReportFormComponent } from './components/report-form/report-form.compon
 import { MatMenuModule } from '@angular/material/menu';
 import { SurahContainerComponent } from './components/surah-container/surah-container.component';
 import { ReportDialogComponent } from './components/report-dialog/report-dialog.component';
+import { GeneralDialogComponent } from './components/general-dialog/general-dialog.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ReportDialogComponent } from './components/report-dialog/report-dialog.
     ReportFormComponent,
     SurahContainerComponent,
     ReportDialogComponent,
+    GeneralDialogComponent,
   ],
   imports: [
     BrowserModule,

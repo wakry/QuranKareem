@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ReportFormComponent implements OnInit {
 
+  notSubmitting = true;
   reportForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', Validators.compose([Validators.email, Validators.required])],
@@ -26,12 +27,14 @@ export class ReportFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.notSubmitting = false;
     this.rs.postReport(this.reportForm.value as Report).subscribe(
       success => {
         this.ns.showNotificationSnackBar(success.name + " تم الإرسال شكراً لك");
         this.router.navigate(['/']);
       },
-      error => { this.ns.showErrorSnackBar("حدث خطأ ولم يتم الإرسال"); }
+      error => { this.ns.showErrorSnackBar("حدث خطأ ولم يتم الإرسال"); },
+      () =>{this.notSubmitting = true;}
     );
   }
 }
