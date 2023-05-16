@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ElementRef, AfterViewInit } from '@angular/core';
 
 import { appError } from './model/appError';
 import { NotificationsService } from './services/notifications/notifications.service';
@@ -14,8 +14,8 @@ export class AppComponent {
 
   appError: appError | undefined;
 
-  constructor(private ns: NotificationsService, private ngZone: NgZone, private titleService: Title) { }
-
+  constructor(private ns: NotificationsService, private ngZone: NgZone, private titleService: Title,private _elementRef : ElementRef) { }
+  
   ngOnInit() {
     this.ns.cast.subscribe(
       result => {

@@ -37,28 +37,37 @@ $dark-theme: mat.define-dark-theme((
   }
 }
 
-// Apply the dark theme by default
-@include mat.core-theme($dark-theme);
-@include mat.button-theme($dark-theme);
-@include mat.toolbar-theme($dark-theme);
-@include mat.card-theme($dark-theme);
-@include mat.button-toggle-theme($dark-theme);
-@include mat.dialog-theme($dark-theme);
-@include mat.tabs-theme($dark-theme);
-@include mat.progress-spinner-theme($dark-theme);
-@include errors-block-theme($dark-theme);
-@include mat.snack-bar-theme($dark-theme);
-@include mat.form-field-theme($dark-theme); // Form-Field theme
-@include mat.input-theme($dark-theme);      // Input Theme
-@include mat.autocomplete-theme($dark-theme);
-@include mat.menu-theme($dark-theme);
-
+.my-dark-theme {
+  @include mat.core-theme($dark-theme);
+  @include mat.button-theme($dark-theme);
+  @include mat.toolbar-theme($dark-theme);
+  @include mat.card-theme($dark-theme);
+  @include mat.button-toggle-theme($dark-theme);
+  @include mat.dialog-theme($dark-theme);
+  @include mat.tabs-theme($dark-theme);
+  @include mat.progress-spinner-theme($dark-theme);
+  @include errors-block-theme($dark-theme);
+  @include mat.snack-bar-theme($dark-theme);
+  @include mat.form-field-theme($dark-theme); // Form-Field theme
+  @include mat.input-theme($dark-theme); // Input Theme
+  @include mat.autocomplete-theme($dark-theme);
+  @include mat.menu-theme($dark-theme);
+}
 // Apply the light theme only when the `.my-light-theme` CSS class is applied
 // to an ancestor element of the components (such as `body`).
 .my-light-theme {
- @include mat.core-color($light-theme);
- @include mat.button-color($light-theme);
- @include mat.card-color($light-theme);
- @include errors-block-theme($light-theme,$is-light: true);
- @include mat.snack-bar-theme($light-theme);
+  @include mat.core-theme($light-theme);
+  @include mat.button-theme($light-theme);
+  @include mat.toolbar-theme($light-theme);
+  @include mat.card-theme($light-theme);
+  @include mat.button-toggle-theme($light-theme);
+  @include mat.dialog-theme($light-theme);
+  @include mat.tabs-theme($light-theme);
+  @include mat.progress-spinner-theme($light-theme);
+  @include errors-block-theme($light-theme);
+  @include mat.snack-bar-theme($light-theme);
+  @include mat.form-field-theme($light-theme); // Form-Field theme
+  @include mat.input-theme($light-theme); // Input Theme
+  @include mat.autocomplete-theme($light-theme);
+  @include mat.menu-theme($light-theme);
 }

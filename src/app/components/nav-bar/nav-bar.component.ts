@@ -56,4 +56,18 @@ export class NavBarComponent implements OnInit {
 
   }
 
+  toggleTheme() {
+
+    let mainbody = document.getElementById("main-body")
+
+    if (mainbody?.classList.contains("my-dark-theme")) {
+      mainbody.classList.remove("my-dark-theme")
+      mainbody.classList.add("my-light-theme")
+    } else {
+      mainbody?.classList.remove("my-light-theme")
+      mainbody?.classList.add("my-dark-theme")
+    }
+
+  }
+
 }
