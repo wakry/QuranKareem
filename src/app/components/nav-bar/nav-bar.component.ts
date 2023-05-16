@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
   showMenu:any ;
   showContinueButton:boolean = false;
   savedObj:any;
+  mode = "toggle_off"
   ngOnInit(): void {
     this.date = this.dateService.getDate()|| 'Error';
     this.screenService.isSmall.subscribe(
@@ -63,9 +64,11 @@ export class NavBarComponent implements OnInit {
     if (mainbody?.classList.contains("my-dark-theme")) {
       mainbody.classList.remove("my-dark-theme")
       mainbody.classList.add("my-light-theme")
+      this.mode = "toggle_on"
     } else {
       mainbody?.classList.remove("my-light-theme")
       mainbody?.classList.add("my-dark-theme")
+      this.mode = "toggle_off"
     }
 
   }
