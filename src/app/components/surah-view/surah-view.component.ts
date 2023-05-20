@@ -41,7 +41,7 @@ export class SurahViewComponent implements OnInit {
   currentPageStartingIndex = 0
   lastPageNumber = 1;
   currentPageAyat: any = []
-  currentView: number = 1;
+  currentView: string = "1";
   isSmallScreen:boolean = false;
 
   //pageYoffset: number = 0;
@@ -59,7 +59,7 @@ export class SurahViewComponent implements OnInit {
         this.currentView = savedJson["currentView"];
         this.changeView(this.currentView)
       } else {
-        this.currentView = 1;
+        this.changeView(this.currentView)
       }
     } catch (e:any) {
       this.router.navigate(['/'])
@@ -72,7 +72,7 @@ export class SurahViewComponent implements OnInit {
     this.currentView = value;
 
     // Set the current page number to the first page in the Surah.
-    if (this.currentView == 3) {
+    if (this.currentView == "3") {
       if(this.currentPageNumber == 0) this.currentPageNumber = this.surah?.ayat[0].pageNumber;
       //this.currentPageNumber = this.surah?.ayat[0].pageNumber;
       this.firstPageNumber = this.surah?.ayat[0].pageNumber;

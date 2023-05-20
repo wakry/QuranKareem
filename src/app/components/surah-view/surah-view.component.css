@@ -1,7 +1,6 @@
 .ayah {
     font-family: UthmanicHafs;
     margin-right: .1%;
-    font-weight: 800;
     font-size: x-large;
     line-height: 250%;
     text-align: center;
@@ -9,7 +8,7 @@
 
 .sticky_toggle_group{
     width:100%;
-
+    position:sticky;
     top: 0;
     z-index: 10;
     overflow: auto;
@@ -59,10 +58,9 @@
 
   .surah-tools{
     position: fixed;
-    bottom: 0;
+    bottom: 10px;
     z-index: 10;
     float:left;
-    left:0px;
+    left:10px;
     border: 1px;
-    margin-bottom: 20px;
   }

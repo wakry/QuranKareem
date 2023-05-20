@@ -3,6 +3,7 @@ import { SuwarService } from '../../services/suwar/suwar.service';
 import { Surah } from '../../model/surah'
 import { tap, finalize, map, startWith } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { DateService } from 'src/app/services/date/date.service';
 
 @Component({
   selector: 'app-suwar',
@@ -18,10 +19,13 @@ export class SuwarComponent implements OnInit, OnDestroy {
   isError = false;
   asyncResult: any;
 
-  constructor(public suwarService: SuwarService) { }
+  date:string = ""
+
+  constructor(public suwarService: SuwarService,private dateService:DateService) { }
 
   ngOnInit(): void {
     this.showSuwar();
+    this.date = this.dateService.getDateLong();
   }
  
  

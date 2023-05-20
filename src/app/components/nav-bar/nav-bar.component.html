@@ -1,17 +1,11 @@
 
 <mat-toolbar>
-  <mat-toolbar-row style="height:10%">
-      <span style="font-size:x-small">{{this.dateLong}} - {{this.dateNum}}</span>
-  </mat-toolbar-row>
   <mat-toolbar-row>
-  <ng-container *ngIf="screenService.isSmall |async then menu ;else navVarButtons" >
-
-  </ng-container>
-
+  <ng-container *ngIf="screenService.isSmall |async then menu ;else navVarButtons" ></ng-container>
   <span class="navbar-spacer"></span>
   <!-- stupid angular -->
   <!-- [routerLink]="['/suwar', 'saved']" -->
-  <span [hidden]='!showContinueButton'><button mat-raised-button color="warn" class="buttons-groups" (click)="goToSaved($event)">متابعة الحفظ</button></span>
+  <span [hidden]='!showContinueButton'><button mat-raised-button color="primary" class="buttons-groups" (click)="goToSaved($event)">متابعة الحفظ</button></span>
   <button mat-icon-button aria-label="Example icon-button with share icon" (click)="share()">
     <mat-icon>share</mat-icon>
   </button>
@@ -22,7 +16,7 @@
 </mat-toolbar>
 
 <ng-template #navVarButtons>
-  <app-nav-bar-button title="الرئيسية" logoName="star" class="buttons-groups" [routerLink]="['/']"></app-nav-bar-button>
+  <app-nav-bar-button title="الرئيسية" logoName="home" class="buttons-groups" [routerLink]="['/']"></app-nav-bar-button>
   <app-nav-bar-button title="للإقتراحات" logoName="report" class="buttons-groups"
     [routerLink]="['/report']"></app-nav-bar-button>
 </ng-template>
@@ -33,7 +27,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/']">
-      <mat-icon>dialpad</mat-icon>
+      <mat-icon>home</mat-icon>
       <span>الرئيسية</span>
     </button>
     <button mat-menu-item [routerLink]="['/report']">

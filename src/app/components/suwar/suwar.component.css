@@ -10,3 +10,7 @@
     text-align: center;
   }
   
+
+  .grid-container {
+    display: grid;
+  }

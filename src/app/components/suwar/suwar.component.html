@@ -1,3 +1,5 @@
+<div style="margin-right: 20px;">{{date}}</div>
+
 <ng-container *ngIf="isLoading then loading"></ng-container>
 
 <ng-container *ngIf="suwar then displayResult"></ng-container>
@@ -7,12 +9,14 @@
 
 <!-- Loading template -->
 <ng-template #loading>
-<app-spinner></app-spinner>
+      <app-spinner></app-spinner>
 </ng-template>
 
 <!-- In case of results -->
 <ng-template #displayResult>
-      <app-search-bar (newSearchEvent)="search($event)"></app-search-bar>
+      <div style="text-align: center;">
+            <app-search-bar (newSearchEvent)="search($event)"></app-search-bar>
+      </div>
       <div *ngIf="suwar" class="buttons-container">
             <div *ngFor="let surah of suwarFiltered$" class="flex-container">
                   <app-surah-list-element [surah]="surah"></app-surah-list-element>

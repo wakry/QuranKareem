@@ -1,8 +1,5 @@
-<div class="container">
-    <mat-form-field #search appearance="fill" class="serach-form-field">
-        <mat-label>البحث</mat-label>
-        <input matInput #searchInput placeholder="أبحث عن سورة"  (input)="onInputChange(searchInput.value)">
-        <mat-icon matSuffix>search</mat-icon>
-        <mat-hint>لا يلزم التشكيل</mat-hint>
-    </mat-form-field>
-</div>
+<mat-form-field #search appearance="fill">
+    <mat-label>البحث</mat-label>
+    <input matInput #searchInput placeholder="لا يلزم التشكيل"  (input)="onInputChange(searchInput.value)">
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

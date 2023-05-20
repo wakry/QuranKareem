@@ -1,9 +1,8 @@
 <ng-template [ngIf]="surah">
-    <button mat-stroked-button color="primary" [routerLink]="['/suwar', surah.id]">
+    <button mat-stroked-button [routerLink]="['/suwar', surah.id]">
         <div class="wrapper">
-            <div class="box a">{{surah.arabicName}}</div>
-            <img src="./assets/allah-icon.jpg" class="box b">
-            <div class="box c">{{surah.englishName}}</div>
+            <div>{{surah.arabicName}}</div>
+            <div>{{surah.englishName}}</div>
         </div>
     </button>
 </ng-template>

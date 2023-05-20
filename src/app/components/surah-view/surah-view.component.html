@@ -17,17 +17,17 @@
             <mat-card-subtitle>{{surah.englishName}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <ng-container *ngIf="currentView==1">
+            <ng-container *ngIf="currentView=='1'">
                     <ng-container *ngFor="let ayah of surah.ayat; index as j">
                         <span class="ayah" (click)="openTfsser(j)"> {{ayah.textForHtml}}</span>
                     </ng-container>
             </ng-container>
 
-            <ng-container *ngIf="currentView==2">
+            <ng-container *ngIf="currentView=='2'">
                 <span class="ayah" (click)="openTfsser(nextPointer)"> {{surah.ayat[nextPointer].textForHtml}}</span>
             </ng-container>
 
-            <ng-container *ngIf="currentView==3">
+            <ng-container *ngIf="currentView=='3'">
                     <ng-container *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
                         <span (click)="openTfsser(i + currentPageStartingIndex)" class="ayah">{{ayah.textForHtml}}</span>
                     </ng-container>
@@ -36,12 +36,12 @@
         </mat-card-content>
     </mat-card>
 
-    <div *ngIf="currentView==2"> 
+    <div *ngIf="currentView=='2'"> 
         <button mat-raised-button color="accent" class="button" [disabled]="!(previousPointer> -1)" (click)="goPrevious()">السابق</button>
         <button mat-raised-button color="primary" class="button" [disabled]="!(surah.ayat.length-1 > nextPointer)" (click)="goNext()">التالي</button>
     </div>
 
-    <div *ngIf="currentView==3">
+    <div *ngIf="currentView=='3'">
         <button mat-raised-button color="accent" class="button" [disabled]="!(currentPageNumber > firstPageNumber)"
             (click)="goPreviousPage()">السابق</button>
         <button class="button" mat-raised-button color="primary" [disabled]="!(currentPageNumber < lastPageNumber)"
@@ -51,9 +51,9 @@
 
 
 <div class="surah-tools">
-    <button mat-fab color="primary" title="حفظ السورة للعودة لاحقا" (click)="save()">حفظ</button>
+    <button mat-mini-fab color="primary" title="حفظ السورة للعودة لاحقا" (click)="save()">حفظ</button>
     <div style="height:10px"> </div>
-    <button mat-fab color="primary" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
+    <button mat-mini-fab color="primary" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
         <mat-icon>arrow_upward</mat-icon>
     </button>
 </div>

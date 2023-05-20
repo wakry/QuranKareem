@@ -12,7 +12,8 @@ export class ScreenService {
   constructor(private responsive: BreakpointObserver) {
 
     this.responsive.observe([
-      Breakpoints.Handset
+      Breakpoints.Small,
+      Breakpoints.XSmall
     ])
       .subscribe(result => {
         this.isSmall.next(result.matches);
