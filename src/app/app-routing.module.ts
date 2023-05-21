@@ -7,7 +7,8 @@ import { SuwarComponent } from './components/suwar/suwar.component';
 const routes: Routes = [
   {path:'', component: SuwarComponent},
   {path:'suwar/:id', component: SurahContainerComponent},
-  {path:'report',component:ReportFormComponent}
+  {path:'report',component:ReportFormComponent},
+  {path:'**',component: SuwarComponent}
 ];
 
 @NgModule({
