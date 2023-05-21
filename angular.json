@@ -24,7 +24,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/google7f4ee7c14f9f82a2.html"
             ],
             "styles": [ 
               "src/quran-theme.scss",
