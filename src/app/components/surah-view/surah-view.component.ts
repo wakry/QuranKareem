@@ -26,7 +26,7 @@ export class SurahViewComponent implements OnInit {
     private suwarService: SuwarService,
     private elRef: ElementRef,
     public dialog: MatDialog,
-    private screenService: ScreenService,
+    public screenService: ScreenService,
     private router: Router,
     private notification: NotificationsService
   ) { }
@@ -43,7 +43,8 @@ export class SurahViewComponent implements OnInit {
   currentPageAyat: any = []
   currentView: string = "1";
   isSmallScreen:boolean = false;
-
+  fontSizes = ['xx-small','x-small','small','medium','large','x-large','xx-large','40px','60px'];
+  fontSize = 'large';
   //pageYoffset: number = 0;
 
   ngOnInit(): void {
@@ -174,6 +175,18 @@ export class SurahViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  font(sign:string){
+    if (sign == '+'){
+      let newFontIndex = this.fontSizes.indexOf(this.fontSize) + 1
+      if(newFontIndex <= this.fontSizes.length - 1)
+      this.fontSize = this.fontSizes[newFontIndex];
+    }else{
+      let newFontIndex = this.fontSizes.indexOf(this.fontSize) - 1
+      if(newFontIndex >= 0)
+      this.fontSize = this.fontSizes[newFontIndex];
+    }
   }
 
 }

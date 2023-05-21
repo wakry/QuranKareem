@@ -19,17 +19,17 @@
         <mat-card-content>
             <ng-container *ngIf="currentView=='1'">
                     <ng-container *ngFor="let ayah of surah.ayat; index as j">
-                        <span class="ayah" (click)="openTfsser(j)"> {{ayah.textForHtml}}</span>
+                        <span class="ayah" [ngStyle]="{'font-size':fontSize}" (click)="openTfsser(j)"> {{ayah.textForHtml}}</span>
                     </ng-container>
             </ng-container>
 
             <ng-container *ngIf="currentView=='2'">
-                <span class="ayah" (click)="openTfsser(nextPointer)"> {{surah.ayat[nextPointer].textForHtml}}</span>
+                <span class="ayah" [ngStyle]="{'font-size':fontSize}" (click)="openTfsser(nextPointer)"> {{surah.ayat[nextPointer].textForHtml}}</span>
             </ng-container>
 
             <ng-container *ngIf="currentView=='3'">
                     <ng-container *ngFor="let ayah of currentPageAyat; index as i; trackBy:trackword">
-                        <span (click)="openTfsser(i + currentPageStartingIndex)" class="ayah">{{ayah.textForHtml}}</span>
+                        <span (click)="openTfsser(i + currentPageStartingIndex)" class="ayah" [ngStyle]="{'font-size':fontSize}">{{ayah.textForHtml}}</span>
                     </ng-container>
             </ng-container>
 
@@ -50,10 +50,30 @@
 </ng-container>
 
 
-<div class="surah-tools">
-    <button mat-mini-fab color="primary" title="حفظ السورة للعودة لاحقا" (click)="save()">حفظ</button>
-    <div style="height:10px"> </div>
-    <button mat-mini-fab color="primary" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
-        <mat-icon>arrow_upward</mat-icon>
-    </button>
-</div>
+<ng-container *ngIf="this.screenService.isSmall | async; else largeTools">
+    <div class="surah-tools">
+        <button mat-mini-fab color="primary" title="تكبير الخط" (click)="font('+')"><mat-icon>text_increase</mat-icon></button>
+        <div style="height:10px"> </div>
+        <button mat-mini-fab color="primary" title="تصغير الخط" (click)="font('-')"><mat-icon>text_decrease</mat-icon></button>
+        <div style="height:10px"> </div>
+        <button mat-mini-fab color="primary" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
+            <mat-icon>arrow_upward</mat-icon>
+        </button>
+        <div style="height:10px"> </div>
+        <button mat-mini-fab color="primary" title="حفظ السورة للعودة لاحقا" (click)="save()">حفظ</button>
+    </div>
+</ng-container>
+
+<ng-template #largeTools>
+    <div class="surah-tools">
+        <button mat-fab color="primary" title="تكبير الخط" (click)="font('+')"><mat-icon>text_increase</mat-icon></button>
+        <div style="height:10px"> </div>
+        <button mat-fab color="primary" title="تصغير الخط" (click)="font('-')"><mat-icon>text_decrease</mat-icon></button>
+        <div style="height:10px"> </div>
+        <button mat-fab color="primary" title="العودة لأعلى الصفحة" (click)="scrollToTop()">
+            <mat-icon>arrow_upward</mat-icon>
+        </button>
+        <div style="height:10px"> </div>
+        <button mat-fab color="primary" title="حفظ السورة للعودة لاحقا" (click)="save()">حفظ</button>
+    </div>
+</ng-template>
