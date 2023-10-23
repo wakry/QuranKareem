@@ -54,6 +54,7 @@
   
   .mat-card.scrollable-content > .mat-card-content {
     overflow-y: auto;
+    text-align: justify;
   }
 
   .surah-tools{
