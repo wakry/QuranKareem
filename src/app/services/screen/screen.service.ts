@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ReplaySubject } from 'rxjs';
+import {BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { ReplaySubject } from 'rxjs';
 export class ScreenService {
 
   isSmall = new ReplaySubject<boolean>();
+  currentTheme = new BehaviorSubject<string>("dark");
 
   constructor(private responsive: BreakpointObserver) {
 
@@ -20,4 +21,5 @@ export class ScreenService {
       });
 
   }
+
 }

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ExplanationDialogComponent } from '../explanation-dialog/explanation-dialog.component';
 import { SuwarService } from '../../services/suwar/suwar.service';
 import {Surah} from '../../model/surah';
-import { ScreenService } from '../../services/screen.service';
+import { ScreenService } from '../../services/screen/screen.service';
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { GeneralDialogComponent } from '../general-dialog/general-dialog.component';
 

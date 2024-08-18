@@ -24,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SurahContainerComponent } from './components/surah-container/surah-container.component';
 import { ReportDialogComponent } from './components/report-dialog/report-dialog.component';
 import { GeneralDialogComponent } from './components/general-dialog/general-dialog.component';
+import { MainComponent } from './components/main/main.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { GeneralDialogComponent } from './components/general-dialog/general-dial
     SurahContainerComponent,
     ReportDialogComponent,
     GeneralDialogComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

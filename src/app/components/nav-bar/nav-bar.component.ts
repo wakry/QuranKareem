@@ -2,7 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateService } from '../../services/date/date.service'; 
-import { ScreenService } from '../../services/screen.service';
+import { ScreenService } from '../../services/screen/screen.service';
 import { SuwarService } from '../../services/suwar/suwar.service';
 import {Clipboard} from '@angular/cdk/clipboard';
 import { NotificationsService } from 'src/app/services/notifications/notifications.service';
@@ -63,10 +63,12 @@ export class NavBarComponent implements OnInit {
       mainbody.classList.remove("my-dark-theme")
       mainbody.classList.add("my-light-theme")
       this.mode = "toggle_on"
+      this.screenService.currentTheme.next("light")
     } else {
       mainbody?.classList.remove("my-light-theme")
       mainbody?.classList.add("my-dark-theme")
       this.mode = "toggle_off"
+      this.screenService.currentTheme.next("dark")
     }
 
   }
