@@ -21,7 +21,7 @@
         <mat-grid-tile>
             <mat-form-field appearance="fill" style="min-width: 50%;">
                 <mat-label>أدخل النص</mat-label>
-                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
+                <textarea title="نص" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
                     cdkAutosizeMaxRows="5" formControlName="content"></textarea>
                 <mat-error *ngIf="reportForm.get('content')?.invalid">النص غير صحيح</mat-error>
             </mat-form-field>

@@ -1,11 +1,16 @@
 <!-- Toggle Buttons for view  -->
 <ng-container *ngIf="surah">
-    <mat-button-toggle-group class="sticky_toggle_group" #group="matButtonToggleGroup" [value]="currentView"
-        name="surahViewToggleGroup" aria-label="Surah View" (change)="changeView($event.value)">
-        <mat-button-toggle class="toggle_button" value="1">عرض كامل</mat-button-toggle>
-        <mat-button-toggle class="toggle_button" value="2">عرض بالآية</mat-button-toggle>
-        <mat-button-toggle class="toggle_button" value="3">عرض بالصفحة</mat-button-toggle>
-    </mat-button-toggle-group>
+    <div class="sticky-div">
+        <mat-button-toggle-group class="toggle_group" #group="matButtonToggleGroup" [value]="currentView"
+            name="surahViewToggleGroup" aria-label="Surah View" (change)="changeView($event.value)">
+            <mat-button-toggle class="toggle_button" value="1">عرض كامل</mat-button-toggle>
+            <mat-button-toggle class="toggle_button" value="2">عرض بالآية</mat-button-toggle>
+            <mat-button-toggle class="toggle_button" value="3">عرض بالصفحة</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-card>
+            <div class="instructions">إنقر على الآية لعرض التفسير أو الإبلاغ عن خطأ</div>
+        </mat-card>
+    </div>
     <!-- Audio Player -->
     <!-- <div>
         <app-audio-player #audioElement src="assets\001.ogg"></app-audio-player>

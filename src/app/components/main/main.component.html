@@ -1,5 +1,16 @@
-<section>
-    <div>
-        <app-suwar></app-suwar>
-    </div>
-</section>
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <button routerLink="suwar" mat-fab color="accent" class="main-button">القرآن الكريم</button>
+            <a href="https://qurancomplex.gov.sa/">
+                <button mat-fab color="accent" class="main-button">مجمع الملك فهد</button>
+            </a>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <mat-card class="prayer-times">
+            <h2>أوقات الصلاة لموقعك الحالي</h2>
+            <iframe class="{{cssClassName}} iframeS" scrolling="no" src="https://www.islamicfinder.org/prayer-widget/">
+            </iframe>
+    </mat-card>
+</div>

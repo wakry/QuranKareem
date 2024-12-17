@@ -6,11 +6,13 @@
     text-align: center;
    }
 
-.sticky_toggle_group{
-    width:100%;
-    position:sticky;
+.sticky-div{
+    position: sticky;
     top: 0;
     z-index: 10;
+}
+.toggle_group{
+    width:100%;
     overflow: auto;
 }
 
@@ -64,4 +66,10 @@
     float:left;
     left:10px;
     border: 1px;
+  }
+
+  .instructions{
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:lightcoral
   }
